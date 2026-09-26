@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TodoFlow</title>
+    <meta
+      name="description"
+      content="Modern todo app with filters, local storage, dark mode, and task statistics."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">✓</div>
+          <div>
+            <p class="eyebrow">Productivity Hub</p>
+            <h1>TodoFlow</h1>
+          </div>
+        </div>
+
+        <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </header>
+
+      <section class="stats-grid" aria-label="Task statistics">
+        <article class="stat-card">
+          <span class="stat-label">Total</span>
+          <strong id="totalTasks">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Completed</span>
+          <strong id="completedTasks">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Remaining</span>
+          <strong id="remainingTasks">0</strong>
+        </article>
+      </section>
+
+      <section class="panel add-panel">
+        <form id="todoForm" class="todo-form">
+          <div class="input-group">
+            <input
+              id="taskInput"
+              class="task-input"
+              type="text"
+              maxlength="160"
+              placeholder="What needs to be done today?"
+              aria-label="Task name"
+            />
+          </div>
+
+          <div class="task-meta-controls">
+            <label class="priority-field" for="prioritySelect">
+              <span>Priority</span>
+              <select id="prioritySelect" aria-label="Task priority">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+              </select>
+            </label>
+
+            <button class="primary-btn" type="submit">Add Task</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel controls-panel">
+        <div class="toolbar-row">
+          <label class="search-wrap" for="searchInput" aria-label="Search tasks">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.5 3a7.5 7.5 0 015.96 12.8l4.39 4.39 1.41-1.41-4.39-4.39A7.5 7.5 0 1110.5 3zm0 2a5.5 5.5 0 100 11 5.5 5.5 0 000-11z"/>
+            </svg>
+            <input id="searchInput" type="search" placeholder="Search tasks" />
+          </label>
+
+          <div class="filter-group" aria-label="Task filters">
+            <button class="filter-btn active" type="button" data-filter="all">All</button>
+            <button class="filter-btn" type="button" data-filter="active">Active</button>
+            <button class="filter-btn" type="button" data-filter="completed">Completed</button>
+          </div>
+        </div>
+
+        <div class="toolbar-row secondary-row">
+          <div class="progress-block" aria-label="Completion progress">
+            <div class="progress-label">
+              <span>Progress</span>
+              <strong id="progressText">0%</strong>
+            </div>
+            <div class="progress-bar">
+              <span id="progressBar"></span>
+            </div>
+          </div>
+
+          <label class="sort-field" for="sortSelect">
+            <span>Sort by</span>
+            <select id="sortSelect" aria-label="Sort tasks">
+              <option value="created-desc">Newest</option>
+              <option value="created-asc">Oldest</option>
+              <option value="priority-high">High Priority</option>
+              <option value="priority-low">Low Priority</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="task-section">
+        <ul id="taskList" class="task-list" aria-live="polite"></ul>
+        <div id="emptyState" class="empty-state hidden" aria-live="polite">
+          <div class="empty-icon">✨</div>
+          <h3>No tasks yet</h3>
+          <p>Add your first task to start building momentum.</p>
+        </div>
+      </section>
+
+      <div class="footer-actions">
+        <button id="clearCompletedBtn" class="ghost-btn" type="button">Clear completed</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
